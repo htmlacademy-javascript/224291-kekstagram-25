@@ -1,8 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Марина Лопатникова](https://up.htmlacademy.ru/javascript/25/user/224291).
-* Наставник: [Александр Бабченко] (https://htmlacademy.ru/profile/babtshe).
-
+* Наставник: [Александр Бабченко](https://htmlacademy.ru/profile/babtshe).
 ---
 
 _Не удаляйте и не изменяйте самовольно файлы и папки:_
