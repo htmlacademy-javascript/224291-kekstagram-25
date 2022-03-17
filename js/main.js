@@ -9,10 +9,10 @@ const LENGTH_LIMIT = 100;
 
 const getRandom = function (min, max) {
   if (min < max) {
-    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    const rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
   } else {
-    throw new Error('Значение ' + min + ' должно быть больше ' + max);
+    throw new Error('Значение' + min 'должно быть больше' + max);
   }
 };
 
