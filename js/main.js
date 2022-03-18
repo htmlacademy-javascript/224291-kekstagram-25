@@ -21,9 +21,9 @@ getRandom(MIN_VALUE, MAX_VALUE);
 
 // Функция для проверки максимальной длины строки.
 
-const RETURN_STRING_LENGTH = function (current, max) {
+const checkingMaxString = function (current, max) {
   return current.length <= max;
 };
 
-RETURN_STRING_LENGTH(STRING_COMMENT, LENGTH_LIMIT);
+checkingMaxString(STRING_COMMENT, LENGTH_LIMIT);
 
