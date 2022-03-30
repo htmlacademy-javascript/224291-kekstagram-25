@@ -6,6 +6,13 @@ const MIN_VALUE = 1;
 const MAX_VALUE = 14;
 const STRING_COMMENT = 'Определенное количество символов';
 const LENGTH_LIMIT = 100;
+const MASSAGES = ['Всё отлично!',
+  'В целом всё неплохо. Но не всё.',   //Создаем массив для хранения текста для комментариев. Можно вынести в константы
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
+  'В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?'];
 
 const getRandom = function (min, max) {
   if (min < max) {
@@ -28,26 +35,13 @@ const checkingMaxString = function (current, max) {
 checkingMaxString(STRING_COMMENT, LENGTH_LIMIT);
 
 
-// базовый класс, имеет поле id
-class HasId
+class PhotoDescription
 {
-  //конструктор
-  constructor(id)
-  {
-    //инициализация переменный класса
-    this.Id = id;
-  }
-}
-
-// класс описания фотографий, наследуется от базового класса
-class PhotoDescription extends HasId
-{
-  //конструктор
+  //конструктор. Создаем структуру объекта
   constructor(id, url, description, likes, comments)
   {
-    //Вызов базового класса
-    super(id);
     //инициализация переменный класса
+    this.id = id;
     this.url = url;
     this.description = description;
     this.likes = likes;
@@ -55,57 +49,23 @@ class PhotoDescription extends HasId
   }
 }
 
-// класс комметарий, наследуется от базового класса
-class PhotoComment extends HasId
+class PhotoComment
 {
   //конструктор
   constructor(id, avatar, message, name)
   {
-    //Вызов базового класса
-    super(id);
+
     //инициализация переменный класса
+    this.id = id;
     this.avatar = avatar;
     this.message = message;
     this.name = name;
   }
 }
 
-//Функция генерации объектов описания объектов фотографий
-const generetePhotoDescription = function()
-{
-  // Создаем массив
-  const result = new Array();
-  // Пишем цикл что бы создать 25 элементов массива
-  for (let i = 1; i <= 24; i++)
-  {
-    // Создаем url
-    const url = `photos/ + ${i.toString()} + .jpg`;
-    //Создаем описание
-    const description = 'Good';
-    //Создаем количество лайков
-    const likes = getRandom(15, 200);
-    //Вызываем функцию генераци комментариев, передаем i - количество комментариев
-    const comments = generetePhotoComment(i);
-    //Создаем объект
-    const photoDescription = new PhotoDescription(i, url, description, likes, comments);
-    //Добавляем в массив объект фотографии
-    result.push(photoDescription);
-  }
-  return result;
-};
 
-//Функция для генерации комментариев
 const generetePhotoComment = function(count)
 {
-  //Создаем массив для хранения текста для комментариев. Можно вынести в константы
-  const messages = new Array('Всё отлично!',
-    'В целом всё неплохо. Но не всё.',
-    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
-    'В конце концов это просто непрофессионально.',
-    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше',
-    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?');
-
 
   //Создаем массив для хранения комментариев
   const comments = new Array();
@@ -113,7 +73,7 @@ const generetePhotoComment = function(count)
   for(let i = 1; i <= count; i++)
   {
     //Достаем случайный элемент из массива
-    const message = messages[getRandom(0, 6)];//Создаем аватар
+    const message = MASSAGES[getRandom(0, 6)];  //Создаем аватар
     const avatar = `img/avatar- + ${getRandom(1, 6)} + .sv`;
     //Создаем объект комментария
     const photoComment = new PhotoComment(i, avatar, message, 'Марина');
@@ -123,4 +83,28 @@ const generetePhotoComment = function(count)
   return comments;
 };
 
-generetePhotoDescription();
+const generatePhotoDescription = function()
+{
+
+  const photos = new Array();
+  // Пишем цикл что бы создать 25 элементов массива
+  for (let i = 1; i <= 24; i++)
+  {
+    // Создаем url
+    const url = `photos/ + ${i} + .jpg`;
+    //Создаем описание
+    const description = 'Good';
+    //Создаем количество лайков
+    const likes = getRandom(15, 200);
+    //Вызываем функцию генерации комментариев, передаем i - количество комментариев
+    const comments = generetePhotoComment(i);
+    //Создаем объект
+    const photoDescription = new PhotoDescription(i, url, description, likes, comments);
+    //Добавляем в массив объект фотографии
+    photos.push(photoDescription);
+  }
+  return photos;
+};
+
+generatePhotoDescription();
+
