@@ -74,7 +74,7 @@ const generetePhotoComment = function(count)
   {
     //Достаем случайный элемент из массива
     const message = MASSAGES[getRandom(0, 6)];  //Создаем аватар
-    const avatar = `img/avatar- + ${getRandom(1, 6)} + .sv`;
+    const avatar = `img/avatar-${getRandom(1, 6)}.sv`;
     //Создаем объект комментария
     const photoComment = new PhotoComment(i, avatar, message, 'Марина');
     //добавляем в массив комментарии
@@ -91,7 +91,7 @@ const generatePhotoDescription = function()
   for (let i = 1; i <= 24; i++)
   {
     // Создаем url
-    const url = `photos/ + ${i} + .jpg`;
+    const url = `photos/${i}.jpg`;
     //Создаем описание
     const description = 'Good';
     //Создаем количество лайков
