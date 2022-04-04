@@ -34,4 +34,6 @@ const checkStringLength = function (current, max) {
 
 checkStringLength(STRING_COMMENT, LENGTH_LIMIT);
 
-export {getRandom, checkStringLength, MESSENGER, AMOUNTCOMMENT};
+const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export {getRandom, checkStringLength, MESSENGER, AMOUNTCOMMENT, isEscEvent};
