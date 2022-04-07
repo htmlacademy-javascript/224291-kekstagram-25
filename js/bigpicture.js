@@ -60,3 +60,5 @@ document.addEventListener('keydown', (evt) => {
     document.body.classList.remove('modal-open');
   }
 });
+
+popupPicture();
