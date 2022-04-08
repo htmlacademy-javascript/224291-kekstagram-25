@@ -42,7 +42,7 @@ const fullSizePictureRender = (evt) => {
 
 };
 
-const popupPicture = () => {
+const showBigPicture = () => {
   pictureList.forEach((picture) => {
     picture.addEventListener('click', fullSizePictureRender);
   });
@@ -61,4 +61,4 @@ document.addEventListener('keydown', (evt) => {
   }
 });
 
-popupPicture();
+showBigPicture();
