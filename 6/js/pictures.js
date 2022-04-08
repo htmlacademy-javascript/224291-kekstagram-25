@@ -1,10 +1,11 @@
 import {generatePhotoDescription} from './data.js';
-import {showBigPicture} from './bigpicture.js';
+
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
+
 const photoDescriptions = generatePhotoDescription();
 const photoDescriptionFragment = document.createDocumentFragment();
 
@@ -14,9 +15,8 @@ photoDescriptions.forEach((photoDescription) => {
   pictureElement.querySelector('.picture__comments').textContent = photoDescription.comments.length;
   pictureElement.querySelector('.picture__likes').textContent = photoDescription.likes;
   photoDescriptionFragment.appendChild(pictureElement);
-  pictureElement.addEventListener('click', () => {
-    showBigPicture(photoDescription);
-  });
 });
 
 pictures.appendChild(photoDescriptionFragment);
+
+export {pictures};
