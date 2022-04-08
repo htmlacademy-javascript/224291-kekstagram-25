@@ -69,4 +69,4 @@ const generatePhotoDescription = function()
 
 generatePhotoDescription();
 
-export {generatePhotoDescription, photos};
+export {generatePhotoDescription};
