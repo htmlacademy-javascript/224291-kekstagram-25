@@ -38,7 +38,6 @@ const getRandom = function (min, max) {
 
 getRandom(MIN_VALUE, MAX_VALUE);
 
-
 // Функция для проверки максимальной длины строки.
 
 const getRandomArrayElement = (elements) => elements[getRandom(0, elements.length - 1)];

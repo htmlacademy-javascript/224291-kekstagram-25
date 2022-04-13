@@ -1,6 +1,5 @@
 import {NAMES, getRandom, MESSENGER, AMOUNTCOMMENT, getRandomArrayElement, MAX_COMMENTS_NUMBER} from './utils.js';
 
-
 const commentIds = [];
 
 const createCommentId = (index) => {

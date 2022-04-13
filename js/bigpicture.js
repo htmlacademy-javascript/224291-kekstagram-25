@@ -2,7 +2,6 @@ import {userPhotos} from './create-photo.js';
 import {pictures} from './pictures.js';
 
 const pictureList = pictures.querySelectorAll('.picture');
-
 const bigPicture = document.querySelector('.big-picture');
 const cancel = bigPicture.querySelector('.big-picture__cancel');
 const commentsWrap = bigPicture.querySelector('.social__comments');
