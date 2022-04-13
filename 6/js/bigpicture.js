@@ -1,13 +1,12 @@
-import {photos} from './data.js';
-import {isEscEvent} from './utils.js';
+import {generatePhotoDescription} from './data.js';
 import {pictures} from './pictures.js';
 
 const pictureList = pictures.querySelectorAll('.picture');
 
 const bigPicture = document.querySelector('.big-picture');
 const cancel = bigPicture.querySelector('.big-picture__cancel');
-const socialComment = bigPicture.querySelector('.social__comments');
-const commentTemplate = socialComment.querySelector('.social__comment');
+const commentsWrap = bigPicture.querySelector('.social__comments');
+const commentTemplate = commentsWrap.querySelector('.social__comment');
 const commentsFragment = document.createDocumentFragment();
 
 document.querySelector('.social__comment-count').classList.add('hidden');
@@ -19,7 +18,7 @@ const fullSizePictureRender = (evt) => {
   const pictureSrc = evt.target.src;
   bigPicture.querySelector('.big-picture__img img').src = pictureSrc;
 
-  const userPhotoCurrent = photos.find((userPhoto) => {
+  const userPhotoCurrent = generatePhotoDescription.find((userPhoto) => {
     if (pictureSrc.indexOf(userPhoto.url) !== -1) {
       return true;
     }
@@ -31,14 +30,14 @@ const fullSizePictureRender = (evt) => {
   bigPicture.querySelector('.social__caption').textContent = userPhotoCurrent.description;
 
   userPhotoCurrentComments.forEach((item) => {
-    socialComment.innerHTML = '';
+    commentsWrap.innerHTML = '';
     const newComment = commentTemplate.cloneNode(true);
     newComment.querySelector('.social__picture').src = item.avatar;
     newComment.querySelector('.social__picture').alt = item.userName;
     newComment.querySelector('.social__text').textContent = item.message;
     commentsFragment.appendChild(newComment);
   });
-  socialComment.appendChild(commentsFragment);
+  commentsWrap.appendChild(commentsFragment);
 
 };
 
@@ -52,10 +51,8 @@ cancel.addEventListener('click', () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
 });
-
 document.addEventListener('keydown', (evt) => {
-  if (isEscEvent(evt)) {
-    evt.preventDefault();
+  if (evt.keyCode === 27) {
     bigPicture.classList.add('hidden');
     document.body.classList.remove('modal-open');
   }
