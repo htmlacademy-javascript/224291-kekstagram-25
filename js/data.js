@@ -1,6 +1,8 @@
 import {getRandom, MESSENGER, AMOUNTCOMMENT} from './utils.js';
 
 
+
+
 class PhotoDescription
 {
 
@@ -47,10 +49,11 @@ const generatePhotoComment = function(count)
   return comments;
 };
 
+
 const generatePhotoDescription = function()
 {
 
-  const photos = new Array();
+ const photos = new Array();
   for (let i = 1; i <= AMOUNTCOMMENT; i++)
   {
     const url = `photos/${i}.jpg`; // Создаем url
@@ -70,3 +73,5 @@ const generatePhotoDescription = function()
 generatePhotoDescription();
 
 export {generatePhotoDescription};
+
+
