@@ -3,8 +3,6 @@
 
 const MIN_VALUE = 1;
 const MAX_VALUE = 14;
-const STRING_COMMENT = 'Определенное количество символов';
-const LENGTH_LIMIT = 100;
 const MAX_COMMENTS_NUMBER = 4;
 const MESSENGER = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',   //Создаем массив для хранения текста для комментариев. Можно вынести в константы
@@ -47,8 +45,6 @@ const getRandomArrayElement = (elements) => elements[getRandom(0, elements.lengt
 
 const checkMaxStringLength = (checkedString, maxLength) => checkedString.length <= maxLength;
 checkMaxStringLength('Проверка работы', 10);
-
-
 
 
 export {getRandom, getRandomArrayElement, MESSENGER, AMOUNTCOMMENT, NAMES, MAX_COMMENTS_NUMBER};

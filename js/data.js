@@ -1,8 +1,5 @@
 import {getRandom, MESSENGER, AMOUNTCOMMENT} from './utils.js';
 
-
-
-
 class PhotoDescription
 {
 
@@ -30,7 +27,6 @@ class PhotoComment
   }
 }
 
-
 const generatePhotoComment = function(count)
 {
 
@@ -48,7 +44,6 @@ const generatePhotoComment = function(count)
   }
   return comments;
 };
-
 
 const generatePhotoDescription = function()
 {
