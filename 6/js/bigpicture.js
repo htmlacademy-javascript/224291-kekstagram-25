@@ -1,8 +1,7 @@
-import {generatePhotoDescription} from './data.js';
+import {userPhotos} from './create-photo.js';
 import {pictures} from './pictures.js';
 
 const pictureList = pictures.querySelectorAll('.picture');
-
 const bigPicture = document.querySelector('.big-picture');
 const cancel = bigPicture.querySelector('.big-picture__cancel');
 const commentsWrap = bigPicture.querySelector('.social__comments');
@@ -18,7 +17,7 @@ const fullSizePictureRender = (evt) => {
   const pictureSrc = evt.target.src;
   bigPicture.querySelector('.big-picture__img img').src = pictureSrc;
 
-  const userPhotoCurrent = generatePhotoDescription.find((userPhoto) => {
+  const userPhotoCurrent = userPhotos.find((userPhoto) => {
     if (pictureSrc.indexOf(userPhoto.url) !== -1) {
       return true;
     }
