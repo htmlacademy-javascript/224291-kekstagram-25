@@ -1,11 +1,12 @@
-import {getRandom, MESSENGER, AMOUNTCOMMENT} from './utils.js';
+import {
+  getRandom,
+  MESSENGER,
+  AMOUNTCOMMENT
+} from './utils.js';
 
+class PhotoDescription {
 
-class PhotoDescription
-{
-
-  constructor(id, url, description, likes, comments)
-  {
+  constructor(id, url, description, likes, comments) {
 
     this.id = id;
     this.url = url;
@@ -15,11 +16,9 @@ class PhotoDescription
   }
 }
 
-class PhotoComment
-{
+class PhotoComment {
 
-  constructor(id, avatar, message, name)
-  {
+  constructor(id, avatar, message, name) {
 
     this.id = id;
     this.avatar = avatar;
@@ -28,17 +27,14 @@ class PhotoComment
   }
 }
 
-
-const generatePhotoComment = function(count)
-{
+const generatePhotoComment = function (count) {
 
   //Создаем массив для хранения комментариев
   const comments = new Array();
 
-  for(let i = 1; i <= count; i++)
-  {
+  for (let i = 1; i <= count; i++) {
 
-    const message = MESSENGER[getRandom(0, 6)];  //Создаем аватар
+    const message = MESSENGER[getRandom(0, 6)]; //Создаем аватар
     const avatar = `img/avatar-${getRandom(1, 6)}.sv`;
     const photoComment = new PhotoComment(i, avatar, message, 'Марина');
 
@@ -47,12 +43,9 @@ const generatePhotoComment = function(count)
   return comments;
 };
 
-const generatePhotoDescription = function()
-{
-
+const generatePhotoDescription = function () {
   const photos = new Array();
-  for (let i = 1; i <= AMOUNTCOMMENT; i++)
-  {
+  for (let i = 1; i <= AMOUNTCOMMENT; i++) {
     const url = `photos/${i}.jpg`; // Создаем url
     const description = 'Good';
     const likes = getRandom(15, 200);
@@ -69,4 +62,6 @@ const generatePhotoDescription = function()
 
 generatePhotoDescription();
 
-export {generatePhotoDescription};
+export {
+  generatePhotoDescription
+};
