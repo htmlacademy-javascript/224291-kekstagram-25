@@ -1,5 +1,5 @@
-import {MAX_HASHTAG_QUANTITY, MAX_COMMENT_LENGTH} from './constants.js';
-import {hashtagsText, commentText} from './form.js';
+import {MAX_HASHTAG_QUANTITY} from './constants.js';
+import {hashtagsText} from './form.js';
 
 const form = document.querySelector('.text__description');
 
@@ -8,7 +8,7 @@ new Pristine(form);
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  const isValid = pristine.validate();
+  const isValid = Pristine.validate();
   if (isValid) {
     console.log('Можно отправлять');
   } else {

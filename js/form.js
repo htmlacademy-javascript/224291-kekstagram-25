@@ -67,7 +67,6 @@ const openImgUploadOverlay = () => {
   document.body.classList.add('modal-open');
   changeScale();
   hashtagValidate();
-  commentValidate();
   onEffectChange();
   document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
 };
