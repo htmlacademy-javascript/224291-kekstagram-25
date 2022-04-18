@@ -1,20 +1,6 @@
 import {MAX_HASHTAG_QUANTITY} from './constants.js';
 import {hashtagsText} from './form.js';
 
-const form = document.querySelector('.text__description');
-
-new Pristine(form);
-
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-
-  const isValid = Pristine.validate();
-  if (isValid) {
-    console.log('Можно отправлять');
-  } else {
-    console.log('Форма невалидна');
-  }
-});
 
 const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 

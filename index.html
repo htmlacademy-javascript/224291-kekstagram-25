@@ -140,9 +140,11 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег" />
+
                   <textarea class="text__description" maxlength="140" name="description"
                     placeholder="Ваш комментарий..."
-                    data-pristine-maxlength-message="Максимальная длина 140 символов"></textarea>
+                    data-pristine-maxlength-message="Максимальная длина 140 символов"
+                    id="field"></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
@@ -176,7 +178,7 @@
               Нравится <span class="likes-count">356</span>
             </p>
           </div>
-          
+
    <!-- Комментарии к изображению -->
    <div class="social__comment-count"><span class="comments-upload-count">5</span> из <span class="comments-count">125</span> комментариев</div>
    <ul class="social__comments">
