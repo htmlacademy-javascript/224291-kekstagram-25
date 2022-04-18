@@ -1,48 +1,73 @@
-// Функция, возвращающая случайное целое число из переданного диапазона включительно.
-// Источник https://learn.javascript.ru/task/random-int-min-max
+const ALERT_SHOW_TIME = 5000;
 
-const MIN_VALUE = 1;
-const MAX_VALUE = 14;
-const MAX_COMMENTS_NUMBER = 4;
-const MESSENGER = ['Всё отлично!',
-  'В целом всё неплохо. Но не всё.',   //Создаем массив для хранения текста для комментариев. Можно вынести в константы
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
-  'В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?'];
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const NAMES = [
-  'Артем',
-  'Марина',
-  'Вася',
-  'Иван',
-  'Андрей',
-  'Катя',
-  'Лена',
-  'Станислав',
-  'Любовь',
-  'Алиса',];
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
 
-const AMOUNTCOMMENT = 24;
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '50%';
+  alertContainer.style.top = '50%';
+  alertContainer.style.bottom = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.transform = 'translate(-50%, -50%)';
+  alertContainer.style.width = '30%';
+  alertContainer.style.height = '30%';
+  alertContainer.style.borderRadius = '15%';
+  alertContainer.style.display = 'flex';
+  alertContainer.style.justifyContent = 'center';
+  alertContainer.style.alignItems = 'center';
+  alertContainer.style.padding = '20px 50px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.lineHeight = 1.5;
+  alertContainer.style.backgroundColor = '#e8b91cf2';
 
-const getRandom = function (min, max) {
-  if (min < max) {
-    const rand = min - 0.5 + Math.random() * (max - min + 1);
-    return Math.round(rand);
-  } else {
-    throw new Error(`Значение ${min} должно быть больше ${max}`);
-  }
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
 };
 
-getRandom(MIN_VALUE, MAX_VALUE);
+function showAndCloseStatusMessage(status) {
+  const messageTemplate = document.querySelector(`#${status}`)
+    .content
+    .querySelector(`.${status}`);
+  const  message =  messageTemplate.cloneNode(true);
+  const messageCloseBtn = message.querySelector('button');
+  document.body.appendChild(message);
 
-// Функция для проверки максимальной длины строки.
+  const onShowMessageBtnEscKeydown = (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      closeMessage();
+    }
+  };
 
-const getRandomArrayElement = (elements) => elements[getRandom(0, elements.length - 1)];
+  document.addEventListener('keydown', onShowMessageBtnEscKeydown);
 
-const checkMaxStringLength = (checkedString, maxLength) => checkedString.length <= maxLength;
-checkMaxStringLength('Проверка работы', 10);
+  function closeMessage() {
+    message.remove();
+    document.removeEventListener('keydown', onShowMessageBtnEscKeydown);
+  }
 
+  message.addEventListener('click', (evt) => {
+    if(evt.target === message || evt.target === messageCloseBtn) {
+      closeMessage();
+    }
+  });
+}
 
-export {getRandom, getRandomArrayElement, MESSENGER, AMOUNTCOMMENT, NAMES, MAX_COMMENTS_NUMBER};
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {isEscapeKey, showAlert, showAndCloseStatusMessage, debounce};
