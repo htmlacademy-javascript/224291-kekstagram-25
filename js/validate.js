@@ -44,8 +44,8 @@ const onHashtagsTextInput = () => {
   hashtagsText.reportValidity();
 };
 
-const hashtagValidate = () => {
+const validatesHashtag = () => {
   hashtagsText.addEventListener('input', onHashtagsTextInput);
 };
 
-export {hashtagValidate};
+export {validatesHashtag};

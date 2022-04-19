@@ -1,5 +1,5 @@
 import {isEscapeKey, showAndCloseStatusMessage} from './utils.js';
-import {hashtagValidate} from './validate.js';
+import {validatesHashtag} from './validate.js';                
 import {SCALE_NUMBER_MIN, SCALE_NUMBER_MAX, SCALE_NUMBER_STEP} from './constants.js';
 import {onEffectChange} from '../nouislider/nouislider-effect-level.js';
 import {sendData} from './api.js';
@@ -66,7 +66,7 @@ const openImgUploadOverlay = () => {
   imgUploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   changeScale();
-  hashtagValidate();
+  validatesHashtag();
   onEffectChange();
   document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
 };

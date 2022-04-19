@@ -1,4 +1,4 @@
-import {popup} from './popup.js';
+import {appears} from './popup.js';
 import {RANDOM_NON_REPEAT_PHOTOS_QUANTITY} from './constants.js';
 
 const picturesWrap = document.querySelector('.pictures');
@@ -15,7 +15,7 @@ const resetArray = () => {
   });
 };
 
-const thumbnailsRender = (userPhotos) => {
+const rendersThumbnails = (userPhotos) => {
   userPhotos.forEach(({url, likes, comments}) => {
     const photoElement = pictureTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
@@ -25,10 +25,10 @@ const thumbnailsRender = (userPhotos) => {
   });
   resetArray();
   picturesWrap.appendChild(usersPhotoListFragment);
-  popup(userPhotos);
+  appears(userPhotos);
 };
 
-const thumbnailsRandomRender = (userPhotos) => {
+const rendersRandomThumbnails = (userPhotos) => {
   userPhotos
     .slice()
     .sort(() => Math.random() - 0.5)
@@ -42,7 +42,7 @@ const thumbnailsRandomRender = (userPhotos) => {
     });
   resetArray();
   picturesWrap.appendChild(usersPhotoListFragment);
-  popup(userPhotos);
+  appears(userPhotos);
 };
 
 const comparePhotos = (photoA, photoB) => {
@@ -51,7 +51,7 @@ const comparePhotos = (photoA, photoB) => {
   return commentsNumberB - commentsNumberA;
 };
 
-const thumbnailsDiscussedRender = (userPhotos) => {
+const rendersThumbnailsDiscussed = (userPhotos) => {
   userPhotos
     .slice()
     .sort(comparePhotos)
@@ -64,7 +64,7 @@ const thumbnailsDiscussedRender = (userPhotos) => {
     });
   resetArray();
   picturesWrap.appendChild(usersPhotoListFragment);
-  popup(userPhotos);
+  appears(userPhotos);
 };
 
-export {thumbnailsRender, thumbnailsRandomRender, thumbnailsDiscussedRender, picturesWrap};
+export {rendersThumbnails, rendersRandomThumbnails, rendersThumbnailsDiscussed, picturesWrap};
