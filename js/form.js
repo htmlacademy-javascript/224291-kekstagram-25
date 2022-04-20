@@ -30,12 +30,12 @@ const resetScale = () => {
 };
 
 scaleBiggerBtn.addEventListener('click', () => {
-  const scale = parseInt(scaleControlInput.value, 10) < SCALE_NUMBER_MAX ? parseInt(scaleControlInput.value, 10)+ SCALE_NUMBER_MIN : SCALE_NUMBER_MAX;
+  const scale = parseInt(scaleControlInput.value, 10) < SCALE_NUMBER_MAX ? parseInt(scaleControlInput.value, 10) + SCALE_NUMBER_MIN : SCALE_NUMBER_MAX;
   setScale(scale);
 });
 
 scaleSmallerBtn.addEventListener('click', () => {
-  const scale = parseInt(scaleControlInput.value, 10) > SCALE_NUMBER_MIN ? parseInt(scaleControlInput.value, 10)- SCALE_NUMBER_MIN : SCALE_NUMBER_MIN;
+  const scale = parseInt(scaleControlInput.value, 10) > SCALE_NUMBER_MIN ? parseInt(scaleControlInput.value, 10) - SCALE_NUMBER_MIN : SCALE_NUMBER_MIN;
   setScale(scale);
 });
 
@@ -48,7 +48,7 @@ const onImgUploadOverlayEscKeydown = (evt) => {
   }
 };
 
- function closeImgUploadOverlay() {
+function closeImgUploadOverlay() {
   imgUploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
@@ -91,4 +91,12 @@ const setImgUploadFormSubmit = (onResponse) => {
   });
 };
 
-export {hashtagsText, commentText, uploadFileInput, imgUploadPreview, effectLevelInput, closeImgUploadOverlay, setImgUploadFormSubmit};
+export {
+  hashtagsText,
+  commentText,
+  uploadFileInput,
+  imgUploadPreview,
+  effectLevelInput,
+  closeImgUploadOverlay,
+  setImgUploadFormSubmit
+};
