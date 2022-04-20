@@ -54,7 +54,6 @@ const onImgUploadOverlayEscKeydown = (evt) => {
   document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
   scaleSmallerBtn.removeEventListener('click', resetScale);
   scaleBiggerBtn.removeEventListener('click', resetScale);
-
 }
 
 const openImgUploadOverlay = () => {
