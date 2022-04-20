@@ -59,7 +59,7 @@ function closeImgUploadOverlay() {
 const openImgUploadOverlay = () => {
   imgUploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  setScale();
+  resetScale();
   validatesHashtag();
   onEffectChange();
   document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
