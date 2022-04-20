@@ -1,4 +1,4 @@
-import {thumbnailsRender, thumbnailsRandomRender, thumbnailsDiscussedRender} from './pictures.js';
+import {rendersThumbnails, rendersRandomThumbnails, rendersThumbnailsDiscussed} from './pictures.js';
 import {RERENDER_DELAY} from './constants.js';
 import {debounce} from './utils.js';
 
@@ -23,21 +23,21 @@ const filterPhotos = (evt, photos) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-    thumbnailsRender(photos);
+    rendersThumbnails(photos);
   }
   if (evt.target === document.getElementById('filter-random')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-    thumbnailsRandomRender(photos);
+    rendersRandomThumbnails(photos);
   }
   if (evt.target === document.getElementById('filter-discussed')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-    thumbnailsDiscussedRender(photos);
+    rendersThumbnailsDiscussed(photos);
   }
 };
 

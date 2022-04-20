@@ -1,9 +1,9 @@
 import '../nouislider/nouislider.js';
-import {fullSizePictureRender, commentsWrapClear, bigPicture} from './bigpictures.js';
+import {rendersFullSizeImage, commentsWrapClear, bigPicture} from './bigpictures.js';
 import {picturesWrap} from './pictures.js';
 import {isEscapeKey} from './utils.js';
 
-const popup = (userPhotos) => {
+const appears = (userPhotos) => {
   const bigPictureCloseElement = bigPicture.querySelector('.big-picture__cancel');
 
   const onBigPictureEscKeydown = (evt) => {
@@ -16,7 +16,7 @@ const popup = (userPhotos) => {
   function openBigPicture(evtEl, photos) {
     bigPicture.classList.remove('hidden');
     document.body.classList.add('modal-open');
-    fullSizePictureRender(evtEl, photos);
+    rendersFullSizeImage(evtEl, photos);
     document.addEventListener('keydown', onBigPictureEscKeydown);
   }
 
@@ -38,4 +38,4 @@ const popup = (userPhotos) => {
   });
 };
 
-export {popup};
+export {appears};

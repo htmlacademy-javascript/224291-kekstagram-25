@@ -1,6 +1,6 @@
 import {isEscapeKey, showAndCloseStatusMessage} from './utils.js';
-import {hashtagValidate} from './validate.js';
-import {SCALE_NUMBER_MIN, SCALE_NUMBER_MAX, SCALE_NUMBER_STEP} from './constants.js';
+import {validatesHashtag} from './validate.js';
+import {SCALE_NUMBER_MIN, SCALE_NUMBER_MAX} from './constants.js';
 import {onEffectChange} from '../nouislider/nouislider-effect-level.js';
 import {sendData} from './api.js';
 
@@ -19,25 +19,25 @@ const commentText = imgUploadOverlay.querySelector('.text__description');
 const scaleBiggerBtn = document.querySelector('.scale__control--bigger');
 const scaleSmallerBtn = document.querySelector('.scale__control--smaller');
 
-const resetForm = () => {
-  uploadFileInput.value = '';
-  scaleControlInput.value = '100%';
-  imgUploadPreview.style.transform = 'scale(1)';
-  hashtagsText.value = '';
-  commentText.value = '';
+
+const setScale = (scale) => {
+  scaleControlInput.value = `${scale}%`;
+  imgUploadPreview.style.transform = `scale(${scale/100})`;
 };
 
-const onChangeBtnClick = (evt) => {
-  let scaleNumber = scaleControlInput.value.slice(0, -1);
-  scaleNumber = Number(scaleNumber);
-  if (evt.target === scaleSmallerBtn && scaleNumber !== SCALE_NUMBER_MIN) {
-    scaleNumber -= SCALE_NUMBER_STEP;
-  } else if (evt.target === scaleBiggerBtn && scaleNumber !== SCALE_NUMBER_MAX) {
-    scaleNumber += SCALE_NUMBER_STEP;
-  }
-  scaleControlInput.value = `${scaleNumber}%`;
-  imgUploadPreview.style.transform = `scale(${ (scaleNumber / 100) })`;
+const resetScale = () => {
+  setScale(SCALE_NUMBER_MAX);
 };
+
+scaleBiggerBtn.addEventListener('click', () => {
+  const scale = parseInt(scaleControlInput.value, 10) < SCALE_NUMBER_MAX ? parseInt(scaleControlInput.value, 10)+ SCALE_NUMBER_MIN : SCALE_NUMBER_MAX;
+  setScale(scale);
+});
+
+scaleSmallerBtn.addEventListener('click', () => {
+  const scale = parseInt(scaleControlInput.value, 10) > SCALE_NUMBER_MIN ? parseInt(scaleControlInput.value, 10)- SCALE_NUMBER_MIN : SCALE_NUMBER_MIN;
+  setScale(scale);
+});
 
 const onImgUploadOverlayEscKeydown = (evt) => {
   if (hashtagsText !== document.activeElement && commentText !== document.activeElement) {
@@ -48,25 +48,20 @@ const onImgUploadOverlayEscKeydown = (evt) => {
   }
 };
 
-function closeImgUploadOverlay() {
+ function closeImgUploadOverlay() {
   imgUploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
-  scaleSmallerBtn.removeEventListener('click', onChangeBtnClick);
-  scaleBiggerBtn.removeEventListener('click', onChangeBtnClick);
-  resetForm();
-}
+  scaleSmallerBtn.removeEventListener('click', resetScale);
+  scaleBiggerBtn.removeEventListener('click', resetScale);
 
-const changeScale = () => {
-  scaleSmallerBtn.addEventListener('click', onChangeBtnClick);
-  scaleBiggerBtn.addEventListener('click', onChangeBtnClick);
-};
+}
 
 const openImgUploadOverlay = () => {
   imgUploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  changeScale();
-  hashtagValidate();
+  setScale();
+  validatesHashtag();
   onEffectChange();
   document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
 };

@@ -6,7 +6,7 @@ const commentsWrap = bigPicture.querySelector('.social__comments');
 const commentTemplate = commentsWrap.querySelector('.social__comment');
 const commentsFragment = document.createDocumentFragment();
 
-const fullSizePictureRender = (evt, userPhotos) => {
+const rendersFullSizeImage = (evt, userPhotos) => {
   commentsWrap.innerHTML = '';
 
   const pictureSrc = evt.target.src;
@@ -37,4 +37,4 @@ const commentsWrapClear = () => {
   commentsWrap.innerHTML = '';
 };
 
-export {fullSizePictureRender, bigPicture, commentsWrapClear, commentsWrap};
+export {rendersFullSizeImage, bigPicture, commentsWrapClear, commentsWrap};
